@@ -10,18 +10,24 @@
 </head>
 
 <script>
-  window.watsonAssistantChatOptions = {
-  integrationID: "65dc0dcc-7cfd-45a8-9752-bce9066d264f", // The ID of this integration.
-  region: "wxo-us-south", // The region your integration is hosted in.
-  serviceInstanceID: "c1f53af3-f4a3-46de-9488-d5e44d40b60e", // The ID of your service instance.
-  orchestrateUIAgentExtensions: false, // If you wish to enable optional UI Agent extensions.
-  onLoad: async (instance) => { await instance.render(); }
-};
-  setTimeout(function(){
-    const t=document.createElement('script');
-    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-    document.head.appendChild(t);
-  });
+  window.wxOConfiguration = {
+    orchestrationID: "0781f29958be4f588e177e1250f85e99_891b1d17-e2e1-4d49-a4a0-13a0b07d4492",
+    hostURL: "https://us-south.watson-orchestrate.cloud.ibm.com",
+    rootElementID: "root",
+    deploymentPlatform: "ibmcloud",
+    crn: "crn:v1:bluemix:public:watsonx-orchestrate:us-south:a/0781f29958be4f588e177e1250f85e99:891b1d17-e2e1-4d49-a4a0-13a0b07d4492::",
+    chatOptions: {
+        agentId: "871aa964-789b-496f-8b00-e2c54ca8bb53", 
+    }
+  };
+  setTimeout(function () {
+    const script = document.createElement('script');
+    script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
+    script.addEventListener('load', function () {
+        wxoLoader.init();
+    });
+    document.head.appendChild(script);
+  }, 0);                     
 </script>
 
 <body></body>
